@@ -97,7 +97,7 @@ push!(results, output)
 ```julia
 vfi.plotter_ss(;df = results, nrow = length(results), ncol = 1, addk = true, var = :n)
 ```
-[plot_ss](example/plot_ss.svg)
+![plot_ss](example/plot_ss.svg)
 
 ### Plotting capital evolution for a given k0 and T
 ```julia
@@ -106,7 +106,7 @@ k0 = 0.1
 T = 50
 plot_k_path(;k0 = k0, kprime = results[1].kprime, kgrid = results[1].kgrid, T = T)
 ```
-[plot_k_path](example/plot_k_path.svg)
+![plot_k_path](example/plot_k_path.svg)
 
 ## References
 [1]  Permanent Income Model 4: Value Function Iteration https://lhendricks.org/econ890/julia/pih/pih4.html 
