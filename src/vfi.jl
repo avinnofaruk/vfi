@@ -183,7 +183,7 @@ function plot_k_path(; k0, kprime, kgrid, T)
     k_path = gen_k_path(; k0 = k0, kprime = kprime, kgrid = kgrid, T = T)
 
     plot()
-    scatter!(0:T-1, k_path, xlabel="Time (t)", ylabel="Capital (kₜ)", title="Capital Path over Time", legend = false)
+    plot!(0:T-1, k_path, xlabel="Time (t)", ylabel="Capital (kₜ)", title="Capital Path over Time", legend = false)
     annotate!([(T, k_path[T], ("k_T = $(round(k_path[T]; digits=2))", 8, :red, :right))])
     current()
 end

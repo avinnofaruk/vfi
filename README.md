@@ -79,24 +79,36 @@ lb_p = -Inf
 tol = 1e-6
 imax = 1000
 
-m = vfi_norisk.Model(
+# Initialize
+results = []
+
+m = vfi.Model(
         β, δ, σ, A, α,
         n, lb_k, ub_k, lb_kprime, v0, lb_c, lb_p, tol, imax,
         F, c, u, budget_kprime, budget_c
     )
     
-results = vfi.solver(m)
+output = vfi.solver_norisk(m)
+
+push!(results, output)
+```
 
 ### Plotting the steady state
-plotter_ss(;df = results, nrow = length(results), ncol = 1, addk = true, var = :n)
+```julia
+vfi.plotter_ss(;df = results, nrow = length(results), ncol = 1, addk = true, var = :n)
+```
+[plot_ss](example/plot_ss.svg)
 
 ### Plotting capital evolution for a given k0 and T
+```julia
 # Initialize
 k0 = 0.1
 T = 50
-plot_k_path(;k0 = k0, kprime = results.kprime, kgrid = results.kgrid, T = T)
+plot_k_path(;k0 = k0, kprime = results[1].kprime, kgrid = results[1].kgrid, T = T)
 ```
+[plot_k_path](example/plot_k_path.svg)
 
 ## References
 [1]  Permanent Income Model 4: Value Function Iteration https://lhendricks.org/econ890/julia/pih/pih4.html 
+
 [2]  PihVfi890 https://github.com/hendri54/PihVfi890 
